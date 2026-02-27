@@ -1,0 +1,1510 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>All About Srushti 🌸</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,500&family=Shadows+Into+Light&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --rose: #e8547a;
+            --deep: #8b1a4a;
+            --blush: #fde8f0;
+            --text: #4a1a30;
+            --muted: rgba(92, 26, 54, 0.5);
+            --card: rgba(255, 248, 252, 0.75);
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #fdf0f5;
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ── Floating hearts bg ── */
+        .hearts-bg {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+            contain: strict;
+        }
+
+        .float-heart {
+            position: absolute;
+            bottom: -3rem;
+            color: var(--rose);
+            animation: floatUp linear infinite;
+            pointer-events: none;
+            will-change: transform, opacity;
+            transform: translateZ(0);
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 0.6;
+            }
+
+            90% {
+                opacity: 0.3;
+            }
+
+            100% {
+                transform: translateY(-110vh) scale(0.5);
+                opacity: 0;
+            }
+        }
+
+        /* ── Hero ── */
+        .hero {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 5rem 2rem 3rem;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            font-size: 20px;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--rose);
+            opacity: 0.8;
+            margin-bottom: 1rem;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .hero h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(4rem, 12vw, 7rem);
+            color: var(--deep);
+            line-height: 1;
+            text-shadow: 0 4px 30px rgba(140, 26, 74, 0.15);
+            animation: fadeUp 1.2s ease both;
+        }
+
+        .hero-sub {
+            font-style: italic;
+            font-size: 1.2rem;
+            font-weight: 300;
+            color: var(--muted);
+            margin-top: 1rem;
+            animation: fadeUp 1.2s 0.2s ease both;
+        }
+
+        .hero-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            margin: 2rem auto;
+            max-width: 320px;
+        }
+
+        .hero-divider .line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(232, 84, 122, 0.4), transparent);
+        }
+
+        .hero-heart {
+            font-size: 1.6rem;
+            color: var(--rose);
+            animation: heartbeat 1.6s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            14% {
+                transform: scale(1.3);
+            }
+
+            28% {
+                transform: scale(1);
+            }
+
+            42% {
+                transform: scale(1.15);
+            }
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(28px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ── Page layout ── */
+        .page {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 1.5rem 6rem;
+            display: flex;
+            flex-direction: column;
+            gap: 3.5rem;
+        }
+
+        /* ── Section header ── */
+        .section-label {
+            font-family: 'Shadows Into Light', cursive;
+            font-size: 1.5rem;
+            color: var(--rose);
+            margin-bottom: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, rgba(232, 84, 122, 0.3), transparent);
+        }
+
+        /* ── Tape decoration ── */
+        .tape {
+            display: inline-block;
+            background: rgba(255, 220, 180, 0.55);
+            width: 60px;
+            height: 22px;
+            border-radius: 3px;
+            position: absolute;
+            top: -11px;
+            left: 50%;
+            transform: translateX(-50%) rotate(-2deg);
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+        }
+
+        /* ── Cards base ── */
+        .card {
+            background: rgba(255, 248, 252, 0.92);
+            border-radius: 20px;
+            border: 1.5px solid rgba(255, 180, 210, 0.4);
+            box-shadow:
+                0 8px 32px rgba(180, 50, 100, 0.08),
+                0 2px 8px rgba(255, 150, 180, 0.12),
+                inset 0 1px 0 rgba(255, 255, 255, 0.7);
+            position: relative;
+            padding: 2rem 2.2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px) rotate(0.3deg);
+            box-shadow:
+                0 16px 48px rgba(180, 50, 100, 0.13),
+                0 4px 16px rgba(255, 150, 180, 0.18);
+        }
+
+        /* ── Diary intro card ── */
+        .diary-card {
+            background: rgba(255, 248, 240, 0.8);
+            border: 1.5px solid rgba(232, 168, 124, 0.3);
+            padding: 2.5rem 2.8rem;
+            position: relative;
+        }
+
+        .diary-card::before {
+            content: '';
+            position: absolute;
+            left: 50px;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: rgba(232, 168, 124, 0.2);
+        }
+
+        .diary-lines {
+            background-image: repeating-linear-gradient(to bottom,
+                    transparent, transparent 31px,
+                    rgba(232, 168, 124, 0.12) 31px, rgba(232, 168, 124, 0.12) 32px);
+        }
+
+        .diary-date {
+            font-family: 'Shadows Into Light', cursive;
+            font-size: 20px;
+            color: rgba(180, 80, 100, 0.6);
+            margin-bottom: 1rem;
+        }
+
+        .diary-text {
+            font-style: italic;
+            font-size: 1.2rem;
+            font-weight: 300;
+            line-height: 2rem;
+            color: var(--text);
+        }
+
+        .diary-text strong {
+            font-style: normal;
+            font-weight: 500;
+            color: var(--rose);
+        }
+
+        .photo-frame video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 2px;
+        }
+
+        /* ── Photo grid ── */
+        .photo-section {}
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.4rem;
+        }
+
+        .polaroid {
+            background: white;
+            padding: 12px 12px 40px;
+            border-radius: 4px;
+            box-shadow: 0 4px 20px rgba(180, 50, 100, 0.1), 0 1px 4px rgba(0, 0, 0, 0.06);
+            transform: rotate(var(--rot, -2deg));
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        .polaroid:nth-child(2) {
+            --rot: 1.5deg;
+        }
+
+        .polaroid:nth-child(3) {
+            --rot: -1deg;
+        }
+
+        .polaroid:hover {
+            transform: rotate(0deg) scale(1.04);
+            box-shadow: 0 12px 40px rgba(180, 50, 100, 0.18);
+            z-index: 2;
+        }
+
+        .photo-frame {
+            width: 100%;
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #fde8f0, #f0e0ff);
+            border-radius: 2px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            overflow: hidden;
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 90%;
+            object-fit: cover;
+        }
+
+        .photo-frame .placeholder-emoji {
+            font-size: 2.5rem;
+        }
+
+        .photo-frame .placeholder-text {
+            font-family: 'Shadows Into Light', cursive;
+            font-size: 0.75rem;
+            color: var(--muted);
+            text-align: center;
+            padding: 0 8px;
+        }
+
+        .polaroid-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            text-align: center;
+            padding: 8px 4px;
+            font-family: 'Shadows Into Light', cursive;
+            font-size: 0.85rem;
+            color: var(--text);
+        }
+
+        /* ── Our Dates ── */
+        .dates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.2rem;
+        }
+
+        .date-card {
+            background: var(--card);
+            border: 1.5px solid rgba(255, 180, 210, 0.4);
+            border-radius: 18px;
+            padding: 1.6rem 1.4rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(180, 50, 100, 0.07);
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .date-card:hover {
+            transform: translateY(-5px) rotate(-0.5deg);
+        }
+
+        .date-emoji {
+            font-size: 2.4rem;
+            margin-bottom: 0.6rem;
+            display: block;
+        }
+
+        .date-title {
+            font-family: 'Shadows Into Light', cursive;
+            font-size: 1.15rem;
+            color: var(--deep);
+            margin-bottom: 0.4rem;
+        }
+
+        .date-desc {
+            font-style: italic;
+            font-size: 0.95rem;
+            font-weight: 300;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        .date-heart {
+            position: absolute;
+            top: -10px;
+            right: 14px;
+            font-size: 1.2rem;
+            color: var(--rose);
+        }
+
+        /* ── Food she loves ── */
+        .food-section .card {
+            padding: 2rem 2.2rem;
+        }
+
+        .food-note {
+            font-style: italic;
+            font-size: 1.05rem;
+            font-weight: 300;
+            color: var(--muted);
+            margin-bottom: 1.6rem;
+            line-height: 1.6;
+        }
+
+        .food-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+        }
+
+        .food-tag {
+            background: linear-gradient(135deg, rgba(255, 182, 210, 0.35), rgba(220, 180, 255, 0.25));
+            border: 1px solid rgba(232, 84, 122, 0.25);
+            border-radius: 50px;
+            padding: 7px 18px;
+            font-size: 1rem;
+            font-weight: 300;
+            color: var(--deep);
+            transition: all 0.25s ease;
+            cursor: default;
+        }
+
+        .food-tag:hover {
+            background: linear-gradient(135deg, rgba(232, 84, 122, 0.2), rgba(196, 79, 168, 0.15));
+            transform: scale(1.05);
+        }
+
+        /* ── Music ── */
+        .music-card {
+            background: linear-gradient(135deg, rgba(20, 10, 30, 0.88), rgba(60, 10, 50, 0.85));
+            border: 1.5px solid rgba(200, 100, 255, 0.25);
+            color: #f0e0ff;
+        }
+
+        .music-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .music-card .section-label {
+            color: #d4a8ff;
+        }
+
+        .music-card .section-label::after {
+            background: linear-gradient(to right, rgba(200, 100, 255, 0.3), transparent);
+        }
+
+        .band-name {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.5rem;
+            background: linear-gradient(135deg, #d4a8ff, #ffb7d5, #a8d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.1;
+            margin-bottom: 0.5rem;
+        }
+
+        .band-tagline {
+            font-style: italic;
+            font-size: 1rem;
+            font-weight: 300;
+            color: rgba(220, 180, 255, 0.7);
+            margin-bottom: 1.8rem;
+            letter-spacing: 0.06em;
+        }
+
+        .song-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .song-row {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 10px 14px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(200, 100, 255, 0.1);
+            transition: background 0.25s ease;
+            text-decoration: none;
+        }
+
+        .song-row:hover {
+            background: rgba(200, 100, 255, 0.12);
+        }
+
+        .song-num {
+            font-size: 0.8rem;
+            color: rgba(200, 150, 255, 0.5);
+            width: 18px;
+            text-align: right;
+            flex-shrink: 0;
+        }
+
+        .song-info {
+            flex: 1;
+        }
+
+        .song-title {
+            font-size: 1rem;
+            color: #f0e0ff;
+            font-weight: 400;
+        }
+
+        .song-artist {
+            font-size: 0.82rem;
+            color: rgba(220, 180, 255, 0.55);
+            font-style: italic;
+            margin-top: 1px;
+        }
+
+        .play-icon {
+            font-size: 1rem;
+            color: rgba(200, 150, 255, 0.6);
+        }
+
+        .song-row:hover .play-icon {
+            color: #d4a8ff;
+        }
+
+        .enhypen-card {
+            background: linear-gradient(135deg, rgba(10, 5, 25, 0.95), rgba(30, 10, 60, 0.92));
+            border: 1.5px solid rgba(150, 80, 255, 0.25);
+            color: #f0e0ff;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .enhypen-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 80% 20%, rgba(120, 60, 255, 0.12) 0%, transparent 60%),
+                radial-gradient(ellipse at 20% 80%, rgba(255, 80, 160, 0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .enhypen-card .section-label {
+            color: #b897ff;
+        }
+
+        .enhypen-card .section-label::after {
+            background: linear-gradient(to right, rgba(150, 80, 255, 0.3), transparent);
+        }
+
+        .enhypen-header {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            margin-bottom: 1.8rem;
+            gap: 1rem;
+        }
+
+        .enhypen-name {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.2rem;
+            background: linear-gradient(135deg, #c084ff, #f0abff, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+            /* FIX */
+            padding-top: 10px;
+            /* EXTRA SAFETY */
+        }
+
+        .enhypen-tagline {
+            font-style: italic;
+            font-size: 0.9rem;
+            font-weight: 300;
+            color: rgba(200, 160, 255, 0.6);
+            margin-top: 0.3rem;
+            letter-spacing: 0.05em;
+        }
+
+        .jake-badge {
+            background: linear-gradient(135deg, rgba(120, 60, 255, 0.25), rgba(255, 80, 160, 0.2));
+            border: 1px solid rgba(150, 80, 255, 0.3);
+            border-radius: 14px;
+            padding: 10px 16px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .jake-image-wrap {
+            width: 95px;
+            /* bigger */
+            height: 95px;
+            /* bigger */
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 8px;
+            border: 3px solid rgba(180, 120, 255, 0.6);
+            box-shadow: 0 6px 20px rgba(120, 60, 255, 0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .jake-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .jake-badge:hover .jake-image-wrap {
+            transform: scale(1.08);
+        }
+
+        .jake-caption {
+            font-size: 0.7rem;
+            color: rgba(220, 180, 255, 0.6);
+            font-style: italic;
+            margin-top: 3px;
+            display: block;
+        }
+
+        .jake-badge .jake-emoji {
+            font-size: 1.6rem;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .jake-badge .jake-label {
+            font-size: 0.7rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: rgba(200, 160, 255, 0.5);
+            display: block;
+        }
+
+        .jake-badge .jake-name {
+            font-family: 'Shadows Into Light', cursive;
+            font-size: 1rem;
+            color: #d4b0ff;
+            display: block;
+            margin-top: 2px;
+        }
+
+        .enhypen-songs {
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
+        }
+
+        .enhypen-row {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 10px 14px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(150, 80, 255, 0.1);
+            transition: background 0.25s ease;
+            text-decoration: none;
+        }
+
+        .enhypen-row:hover {
+            background: rgba(120, 60, 255, 0.12);
+        }
+
+        .enhypen-num {
+            font-size: 0.78rem;
+            color: rgba(180, 130, 255, 0.45);
+            width: 18px;
+            text-align: right;
+            flex-shrink: 0;
+        }
+
+        .enhypen-info {
+            flex: 1;
+        }
+
+        .enhypen-title {
+            font-size: 1rem;
+            color: #f0e0ff;
+            font-weight: 400;
+        }
+
+        .enhypen-artist {
+            font-size: 0.82rem;
+            color: rgba(200, 160, 255, 0.5);
+            font-style: italic;
+            margin-top: 1px;
+        }
+
+        .enhypen-play {
+            font-size: 0.9rem;
+            color: rgba(180, 130, 255, 0.5);
+        }
+
+        .enhypen-row:hover .enhypen-play {
+            color: #c084ff;
+        }
+
+        .enhypen-fave-tag {
+            font-size: 0.68rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: rgba(255, 150, 220, 0.7);
+            background: rgba(255, 80, 160, 0.1);
+            border: 1px solid rgba(255, 80, 160, 0.2);
+            border-radius: 20px;
+            padding: 2px 8px;
+            margin-left: 6px;
+            vertical-align: middle;
+        }
+
+        /* ── Hidden Love Card ── */
+        .hidden-love-card {
+            background: linear-gradient(135deg, rgba(255, 245, 235, 0.95), rgba(255, 235, 245, 0.92));
+            border: 1.5px solid rgba(220, 140, 100, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hidden-love-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 90% 10%, rgba(255, 180, 120, 0.15) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .hidden-love-card .section-label {
+            color: #c07040;
+        }
+
+        .hidden-love-card .section-label::after {
+            background: linear-gradient(to right, rgba(200, 120, 60, 0.3), transparent);
+        }
+
+        .hl-top {
+            display: flex;
+            gap: 1.4rem;
+            align-items: flex-start;
+            margin-bottom: 1.6rem;
+        }
+
+        .hl-poster {
+            width: 90px;
+            flex-shrink: 0;
+            aspect-ratio: 2/3;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(180, 80, 40, 0.2);
+            background: linear-gradient(135deg, #ffe0c0, #ffc0d8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .hl-poster img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hl-info {
+            flex: 1;
+        }
+
+        .hl-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.4rem;
+            color: #8b3a1a;
+            line-height: 1;
+            margin-bottom: 0.3rem;
+        }
+
+        .hl-meta {
+            font-size: 0.8rem;
+            color: rgba(140, 60, 30, 0.6);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 0.8rem;
+        }
+
+        .hl-desc {
+            font-style: italic;
+            font-size: 1rem;
+            font-weight: 300;
+            color: rgba(100, 40, 20, 0.7);
+            line-height: 1.6;
+        }
+
+        .hl-progress-wrap {
+            margin-bottom: 1.2rem;
+        }
+
+        .hl-progress-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: rgba(140, 60, 30, 0.55);
+            font-style: italic;
+            margin-bottom: 6px;
+        }
+
+        .hl-progress-bar {
+            width: 100%;
+            height: 5px;
+            background: rgba(220, 140, 100, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .hl-progress-fill {
+            height: 100%;
+            width: 73%;
+            background: linear-gradient(to right, #e8907a, #e87aa0);
+            border-radius: 10px;
+            animation: progressPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes progressPulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.7;
+            }
+        }
+
+        .hl-quote {
+            background: rgba(255, 220, 180, 0.35);
+            border-left: 3px solid rgba(220, 130, 80, 0.5);
+            border-radius: 0 10px 10px 0;
+            padding: 10px 16px;
+            font-style: italic;
+            font-size: 0.95rem;
+            color: rgba(120, 50, 20, 0.75);
+            margin-bottom: 1.2rem;
+            line-height: 1.6;
+        }
+
+        .hl-quote span {
+            display: block;
+            font-size: 0.75rem;
+            color: rgba(180, 80, 40, 0.5);
+            margin-top: 5px;
+            font-style: normal;
+            letter-spacing: 0.06em;
+        }
+
+        .hl-rewatch {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.82rem;
+            font-style: italic;
+            color: rgba(180, 80, 60, 0.6);
+        }
+
+        .hl-watch-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 1rem;
+            padding: 9px 22px;
+            border-radius: 50px;
+            background: linear-gradient(135deg, #e8907a, #e87aa0);
+            color: white;
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1rem;
+            font-weight: 500;
+            text-decoration: none;
+            border: none;
+            box-shadow: 0 4px 16px rgba(220, 100, 80, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .hl-watch-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(220, 100, 80, 0.4);
+        }
+
+        /* ── Shows ── */
+        .shows-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.2rem;
+        }
+
+        .show-card {
+            background: var(--card);
+            border: 1.5px solid rgba(255, 180, 210, 0.4);
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(180, 50, 100, 0.07);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .show-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 40px rgba(180, 50, 100, 0.14);
+        }
+
+        .show-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .show-thumb {
+            width: 100%;
+            aspect-ratio: 4/5;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .show-thumb.courage {
+            background: linear-gradient(135deg, #1a0533, #3d0066);
+        }
+
+        .show-thumb.richie {
+            background: linear-gradient(135deg, #fffbe0, #ffe066);
+        }
+
+        .show-thumb.shin {
+            background: linear-gradient(135deg, #fffde0, #ffeb9c);
+        }
+
+        .show-body {
+            padding: 1rem 1.2rem 1.4rem;
+            flex: 1;
+        }
+
+        .show-title {
+            font-family: 'Shadows Into Light', cursive;
+            font-size: 1.1rem;
+            color: var(--deep);
+            margin-bottom: 0.3rem;
+        }
+
+        .show-desc {
+            font-size: 0.88rem;
+            font-style: italic;
+            font-weight: 300;
+            color: var(--muted);
+            line-height: 1.5;
+            margin-bottom: 0.8rem;
+        }
+
+        .show-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.82rem;
+            color: var(--rose);
+            letter-spacing: 0.04em;
+            opacity: 0.85;
+        }
+
+        .show-link:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+
+        /* ── Closing note ── */
+        .closing {
+            text-align: center;
+            padding: 3rem 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .closing h2 {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            color: var(--deep);
+            margin-bottom: 1rem;
+        }
+
+        .closing p {
+            font-style: italic;
+            font-weight: 300;
+            font-size: 1.1rem;
+            color: var(--muted);
+            max-width: 400px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .closing-hearts {
+            font-size: 1.8rem;
+            letter-spacing: 0.4em;
+            margin-top: 1.5rem;
+            animation: heartbeat 1.8s ease-in-out infinite;
+        }
+
+        /* ── Scroll reveal ── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ── Hover will-change hints ── */
+        .card,
+        .date-card,
+        .show-card,
+        .polaroid {
+            will-change: transform;
+        }
+
+        @media (max-width: 600px) {
+            .photo-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .photo-grid .polaroid:last-child {
+                display: none;
+            }
+
+            .card {
+                padding: 1.5rem 1.3rem;
+            }
+
+            .diary-card::before {
+                display: none;
+            }
+        }
+
+        /* ── Cute Scrapbook Hero Photo ── */
+
+        .scrapbook-photo {
+            position: relative;
+            width: 320px;
+            margin: 2rem auto 2rem;
+            padding: 12px 12px 40px;
+            background: white;
+            border-radius: 6px;
+            box-shadow: 0 8px 25px rgba(180, 50, 100, 0.12);
+            transform: rotate(-2deg);
+            animation: floatScrap 5s ease-in-out infinite;
+        }
+
+        .scrapbook-photo img {
+            width: 100%;
+            border-radius: 4px;
+            display: block;
+        }
+
+        .photo-caption {
+            position: absolute;
+            bottom: 6px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-family: 'Shadows Into Light', cursive;
+            font-size: 0.9rem;
+            color: #8b1a4a;
+        }
+
+        /* Tape on top */
+        .photo-tape {
+            position: absolute;
+            width: 70px;
+            height: 20px;
+            background: rgba(255, 220, 180, 0.6);
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%) rotate(-3deg);
+            border-radius: 3px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Floating animation */
+        @keyframes floatScrap {
+
+            0%,
+            100% {
+                transform: rotate(-2deg) translateY(0px);
+            }
+
+            50% {
+                transform: rotate(-2deg) translateY(-6px);
+            }
+        }
+
+        /* Sparkles */
+        .sparkle {
+            position: absolute;
+            font-size: 1.1rem;
+            animation: sparkleFloat 4s ease-in-out infinite;
+        }
+
+        .s1 {
+            top: -10px;
+            left: -15px;
+        }
+
+        .s2 {
+            bottom: 50px;
+            right: -18px;
+            animation-delay: 1s;
+        }
+
+        .s3 {
+            top: 40px;
+            right: -15px;
+            animation-delay: 2s;
+        }
+         .more-btn {
+            display: inline-block;
+            margin-top: 2.8rem;
+            padding: 0;
+            border-radius: 50px;
+            background: transparent;
+            border: 1.5px solid rgba(232, 84, 122, 0.4);
+            text-decoration: none;
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            animation: breathe 3s ease-in-out infinite;
+        }
+        @keyframes breathe {
+            0%,100% { box-shadow: 0 0 0 0 rgba(232,84,122,0); border-color: rgba(232,84,122,0.35); }
+            50%      { box-shadow: 0 0 20px 4px rgba(232,84,122,0.12); border-color: rgba(232,84,122,0.7); }
+        }
+        .more-btn:hover {
+            background: linear-gradient(135deg, #e8547a, #c44fa8);
+            border-color: transparent;
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 30px rgba(196,79,168,0.35);
+            animation: none;
+        }
+        .more-btn-inner {
+            display: block;
+            padding: 13px 40px;
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.2rem;
+            font-weight: 400;
+            letter-spacing: 0.08em;
+            color: var(--rose);
+            transition: color 0.3s ease;
+        }
+        .more-btn:hover .more-btn-inner {
+            color: white;
+        }
+        .more-hint {
+            margin-top: 0.8rem;
+            font-style: italic;
+            font-size: 0.82rem;
+            color: rgba(92,26,54,0.35);
+            letter-spacing: 0.1em;
+            animation: fadeUp 1s 0.3s ease both;
+        }
+
+        @keyframes sparkleFloat {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+                opacity: 0.8;
+            }
+
+            50% {
+                transform: translateY(-6px);
+                opacity: 1;
+            }
+            
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="hearts-bg" id="heartsBg"></div>
+
+    <!-- ── HERO ── -->
+    <div class="hero">
+        <div class="hero-tag">✦ a little something, just for you ✦</div>
+        <h1>All About Srushti</h1>
+        <div class="scrapbook-photo">
+            <div class="photo-tape"></div>
+            <div class="sparkle s1">✨</div>
+            <div class="sparkle s2">🌸</div>
+            <div class="sparkle s3">💗</div>
+            <img src="assets\your-photo.jpeg" alt="Srushti">
+            <div class="photo-caption">my pretty girl ♡</div>
+        </div>
+        <p class="hero-sub">a scrapbook made with love, by Ranjeet 🌹</p>
+        <div class="hero-divider">
+            <span class="line"></span>
+            <span class="hero-heart">♡</span>
+            <span class="line"></span>
+        </div>
+    </div>
+
+    <div class="page">
+
+        <!-- ── DIARY INTRO ── -->
+        <div class="card diary-card diary-lines">
+            <div class="tape"></div>
+            <p class="diary-date">Dear Diary,</p>
+            <p class="diary-text">
+                There's this girl named <strong>Srushti</strong> — and she is, without question,
+                the most wonderful person I know. This page is my way of saying
+                <em>I see you, I adore every little thing about you,</em>
+                and I'm so lucky you're mine 🌸
+            </p>
+        </div>
+
+        <!-- ── PHOTOS ── -->
+        <div class="photo-section">
+            <div class="section-label">📸 &nbsp;our little moments</div>
+            <div class="photo-grid">
+                <div class="polaroid">
+                    <div class="photo-frame">
+                        <!-- swap src with your real image path -->
+                        <div class="photo-frame">
+                            <img src="assets/burger.jpeg" alt="Burger King Date" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="polaroid-caption">burger king date 🍟</div>
+                </div>
+                <div class="polaroid">
+                    <div class="photo-frame">
+                        <div class="photo-frame">
+                            <img src="assets/movie.jpeg" alt="Movie Night" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="polaroid-caption">First Movie Date F1</div>
+                </div>
+                <div class="polaroid">
+                    <div class="photo-frame">
+                        <div class="photo-frame">
+                            <video autoplay muted loop playsinline>
+                                <source src="assets/bowling.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                    <div class="polaroid-caption">bowling champion 🏆</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── OUR DATES ── -->
+        <div>
+            <div class="section-label">🗓️ &nbsp;our favourite dates</div>
+            <div class="dates-grid">
+                <div class="date-card">
+                    <span class="date-heart">♡</span>
+                    <span class="date-emoji">🍔</span>
+                    <div class="date-title">Burger King</div>
+                    <p class="date-desc">our very first date — simple, silly, and perfect in every way</p>
+                </div>
+                <div class="date-card">
+                    <span class="date-heart">♡</span>
+                    <span class="date-emoji">🎬</span>
+                    <div class="date-title">F1 Movie Date</div>
+                    <p class="date-desc">our first movie together — I was watching you more than the screen</p>
+                </div>
+                <div class="date-card">
+                    <span class="date-heart">♡</span>
+                    <span class="date-emoji">🎳</span>
+                    <div class="date-title">Arcade Bowling</div>
+                    <p class="date-desc">you laughed every time, even when though I WON HEHEHEEEHHE 🎉</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── MUSIC ── -->
+        <div class="card music-card">
+            <div class="section-label">🎵 &nbsp;her music</div>
+            <div class="band-name">Chase Atlantic</div>
+            <p class="band-tagline">her favourite band — dark, dreamy & oh so her</p>
+            <div class="song-list">
+                <a href="https://open.spotify.com/track/3M0lSi5WW79CXQamgSBIjx?si=e5772e3171834d00" target="_blank"
+                    class="song-row">
+                    <span class="song-num">01</span>
+                    <div class="song-info">
+                        <div class="song-title">Swim</div>
+                        <div class="song-artist">Chase Atlantic</div>
+                    </div>
+                    <span class="play-icon">▶</span>
+                </a>
+                <a href="https://open.spotify.com/search/chase%20atlantic%20consume" target="_blank" class="song-row">
+                    <span class="song-num">02</span>
+                    <div class="song-info">
+                        <div class="song-title">Consume</div>
+                        <div class="song-artist">Chase Atlantic</div>
+                    </div>
+                    <span class="play-icon">▶</span>
+                </a>
+                <a href="https://open.spotify.com/track/4HwDCXsMBC7SUdp2WT4MZP?si=nvVQ3tHBTgmRoJLWQd2lWw"
+                    target="_blank" class="song-row">
+                    <span class="song-num">03</span>
+                    <div class="song-info">
+                        <div class="song-title">Into it</div>
+                        <div class="song-artist">Chase Atlantic</div>
+                    </div>
+                    <span class="play-icon">▶</span>
+                </a>
+                <a href="https://open.spotify.com/track/5pXui9rkf5W90DgZobuDiK?si=p-1sTHKIRc2WQMx6YHXLpA"
+                    target="_blank" class="song-row">
+                    <span class="song-num">04</span>
+                    <div class="song-info">
+                        <div class="song-title">The Walls (i know you love the guitar part you can skip to 2:48)</div>
+                        <div class="song-artist">Chase Atlantic</div>
+                    </div>
+                    <span class="play-icon">▶</span>
+                </a>
+            </div>
+        </div>
+        <div class="card enhypen-card">
+            <div class="section-label">🎤 &nbsp;her other obsession</div>
+            <div class="enhypen-header">
+                <div>
+                    <div class="enhypen-name">ENHYPEN</div>
+                    <p class="enhypen-tagline">dark concept kings — she knows every word 🖤</p>
+                </div>
+                <div class="jake-badge">
+                    <div class="jake-image-wrap">
+                        <img src="assets/jake.jpg" alt="Jake ENHYPEN" class="jake-img">
+                    </div>
+                    <span class="jake-label">her fave</span>
+                    <span class="jake-name">Jake</span>
+                </div>
+            </div>
+            <div class="enhypen-songs">
+                <a href="https://open.spotify.com/search/enhypen%20polaroid%20love" target="_blank" class="enhypen-row">
+                    <span class="enhypen-num">01</span>
+                    <div class="enhypen-info">
+                        <div class="enhypen-title">Polaroid Love <span class="enhypen-fave-tag"></span></div>
+                        <div class="enhypen-artist">ENHYPEN</div>
+                    </div>
+                    <span class="enhypen-play">▶</span>
+                </a>
+                <a href="https://open.spotify.com/search/enhypen%20moonstruck" target="_blank" class="enhypen-row">
+                    <span class="enhypen-num">02</span>
+                    <div class="enhypen-info">
+                        <div class="enhypen-title">Moonstruck</div>
+                        <div class="enhypen-artist">ENHYPEN</div>
+                    </div>
+                    <span class="enhypen-play">▶</span>
+                </a>
+                <a href="https://open.spotify.com/search/enhypen%20big%20girls%20dont%20cry" target="_blank"
+                    class="enhypen-row">
+                    <span class="enhypen-num">03</span>
+                    <div class="enhypen-info">
+                        <div class="enhypen-title">Big Girls Don't Cry</div>
+                        <div class="enhypen-artist">ENHYPEN</div>
+                    </div>
+                    <span class="enhypen-play">▶</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- ── HIDDEN LOVE ── -->
+        <div class="card hidden-love-card">
+            <div class="section-label">🎬 &nbsp;her comfort kdrama</div>
+            <div class="hl-top">
+                <div class="hl-poster">
+                    <img src="assets/hidden_love.jpg" alt="Hidden Love Poster" loading="lazy">
+                </div>
+                <div class="hl-info">
+                    <div class="hl-title">Hidden Love</div>
+                    <div class="hl-meta">C-Drama · Romance · 2023</div>
+                    <p class="hl-desc">the one she rewatches when she needs something warm — you know she cried at least
+                        twice 🌙</p>
+                </div>
+            </div>
+            <div class="hl-progress-wrap">
+                <div class="hl-progress-label">
+                    <span>📺 currently: loved so much, rewatched 3 times</span>
+                    <span>ep 14 / 25</span>
+                </div>
+                <div class="hl-progress-bar">
+                    <div class="hl-progress-fill"></div>
+                </div>
+            </div>
+            <div class="hl-quote">
+                "I have liked you for so long, I've forgotten what it feels like to not like you."
+                <span>— Hidden Love</span>
+            </div>
+            <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+                <span class="hl-rewatch">🔁 rewatched so many times she knows the subtitles by heart</span>
+                <a href="https://xtian69420.github.io/movieIguess/WatchMovie.html?seriesId=210733&type=tv"
+                    target="_blank" class="hl-watch-btn">
+                    Click to watch again 🌸
+                </a>
+            </div>
+        </div>
+
+        <!-- ── SHOWS ── -->
+        <div>
+            <div class="section-label">📺 &nbsp;her favourite shows</div>
+            <div class="shows-grid">
+                <a href="https://www.wco.tv/courage-the-cowardly-dog-season-1-episode-1-a-night-at-the-katz-motel"
+                    target="_blank" class="show-card">
+                    <div class="show-thumb">
+                        <img src="assets/courage.jpg" alt="Courage the Cowardly Dog" loading="lazy">
+                    </div>
+                    <div class="show-body">
+                        <div class="show-title">Courage the Cowardly Dog</div>
+                        <p class="show-desc">spooky, sweet and totally her kind of chaos 💜</p>
+                        <span class="show-link">watch now →</span>
+                    </div>
+                </a>
+                <a href="https://www.wco.tv/richie-rich-1996-episode-1-one-of-a-kind" target="_blank" class="show-card">
+                    <div class="show-thumb">
+                        <img src="assets/richie.jpg" alt="Richie Rich" loading="lazy">
+                    </div>
+                    <div class="show-body">
+                        <div class="show-title">Richie Rich</div>
+                        <p class="show-desc">the OG childhood binge — because she has taste ✨</p>
+                        <span class="show-link">watch now →</span>
+                    </div>
+                </a>
+                <a href="https://watchanimeworld.net/series/shinchan/" target="_blank" class="show-card">
+                    <div class="show-thumb">
+                        <img src="assets/shinchan.jpg" alt="Shin Chan" loading="lazy">
+                    </div>
+                    <div class="show-body">
+                        <div class="show-title">Shin Chan</div>
+                        <p class="show-desc">a little chaotic, always funny — just like her 🌸</p>
+                        <span class="show-link">watch now →</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ── CLOSING ── -->
+    <div class="closing">
+        <h2>You are my favourite</h2>
+        <p>every little thing about you — your taste, your smile, your chaos — is my favourite thing in the world 🌹</p>
+        <div class="closing-hearts">♡ &nbsp; ♡ &nbsp; ♡</div>
+
+        <a href="letter.html" class="more-btn">
+            <span class="more-btn-inner">there's more... 🤍</span>
+        </a>
+        <p class="more-hint">( if you're ready )</p>
+    </div>
+
+    <script>
+        // Floating hearts — capped at 12 for perf
+        const heartsBg = document.getElementById('heartsBg');
+        const heartChars = ['♡', '♥', '💕', '💗', '🌸'];
+        const frag = document.createDocumentFragment();
+        for (let i = 0; i < 12; i++) {
+            const h = document.createElement('span');
+            h.classList.add('float-heart');
+            h.textContent = heartChars[i % heartChars.length];
+            h.style.cssText = `left:${Math.random() * 100}vw;animation-duration:${10 + Math.random() * 12}s;animation-delay:${Math.random() * 10}s;font-size:${0.8 + Math.random() * 1.2}rem;opacity:${0.08 + Math.random() * 0.14}`;
+            frag.appendChild(h);
+        }
+        heartsBg.appendChild(frag);
+
+        // Scroll reveal — CSS class toggle, no inline style thrash
+        document.querySelectorAll('.card, .date-card, .show-card, .polaroid').forEach(el => el.classList.add('reveal'));
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('visible');
+                    observer.unobserve(e.target); // stop watching once revealed
+                }
+            });
+        }, { threshold: 0.08 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>for srushti 🤍</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300;1,400;1,500&family=Great+Vibes&display=swap"
+        rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            height: 100%;
+            overflow: hidden;
+            background: #080608;
+            font-family: 'Cormorant Garamond', serif;
+            color: #f0e8f0;
+            cursor: default;
+            user-select: none;
+        }
+
+        /* ── Grain overlay — static PNG pattern, no SVG filter ── */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAUVBMVEWFhYWDg4N3d3dtbW17e3t1dXWBgYGHh4t5eXlzc3OLi4ubm5uVlZWPj4+NjY19fX2JiYl/f39ra2uRkZGZmZlpaWmXl5dvb29xcXGTk5NnZ2c8TV1mAAAAG3RSTlNAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEAvEOwtAAAFVklEQVR4XpWWB67c2BUFb3g557T/hRo9/WUMZHlgr4Bg8Z4qQgQJlHI4A8SzFVrapvmTF9O7dmYRFZ60YiBhJRCgh1FYhiLAmdvX0CzTOpNE77ME0Zty/nWWzchDtiqrmQDeuv3powQ5ta2eN0FY0InkqDD73lT9c9lEzwUNqgFHs9VQce3TVClFCQrSTfOiYkVJQBmpbq2L6iZavPnAPcoU0dSw0SUTqz/GtrGuXfbyyBniKykOWQWGqwwMA7QiYAxi+IlPdqo+hYHnUt5ZPfnsHJyNiDtnpJyayNBkF6cWoYGAMY92ZxE3Ikk7eeQ3AVVhasBMINHlnwbTgsAG3H8YsBjRpUiabAKLqBgZeHA0dPR0dHQECAYGBgQEBAYGBgQEBAYGBgQEBAYGBgQEBAQGBgYEBAQGBgYEBAQGBgYE=");
+            pointer-events: none;
+            z-index: 100;
+            opacity: 0.025;
+        }
+
+        /* ── Ambient glow — static, no animation ── */
+        .ambient {
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 30% 40%, rgba(180, 60, 120, 0.07) 0%, transparent 60%),
+                radial-gradient(ellipse at 70% 60%, rgba(100, 40, 160, 0.06) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: 0;
+            contain: strict;
+        }
+
+        /* ── Music player ── */
+        .music-bar {
+            position: fixed;
+            top: 1.8rem;
+            right: 2rem;
+            z-index: 50;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+        }
+
+        .music-bar.show {
+            opacity: 1;
+        }
+
+        .music-btn {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            padding: 6px 14px;
+            color: rgba(255, 255, 255, 0.5);
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 0.82rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 0.06em;
+        }
+
+        .music-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .music-eq {
+            display: flex;
+            align-items: flex-end;
+            gap: 2px;
+            height: 14px;
+        }
+
+        .music-eq span {
+            width: 2px;
+            background: rgba(220, 100, 150, 0.7);
+            border-radius: 2px;
+            animation: eq 1s ease-in-out infinite;
+            will-change: transform;
+        }
+
+        .music-eq span:nth-child(1) {
+            animation-delay: 0s;
+            height: 6px;
+        }
+
+        .music-eq span:nth-child(2) {
+            animation-delay: 0.2s;
+            height: 10px;
+        }
+
+        .music-eq span:nth-child(3) {
+            animation-delay: 0.1s;
+            height: 8px;
+        }
+
+        .music-eq span:nth-child(4) {
+            animation-delay: 0.3s;
+            height: 12px;
+        }
+
+        .music-eq span:nth-child(5) {
+            animation-delay: 0.15s;
+            height: 7px;
+        }
+
+        @keyframes eq {
+
+            0%,
+            100% {
+                transform: scaleY(1);
+            }
+
+            50% {
+                transform: scaleY(0.3);
+            }
+        }
+
+        .music-eq.paused span {
+            animation-play-state: paused;
+        }
+
+        /* ── Tap to begin screen ── */
+        #intro-screen {
+            position: fixed;
+            inset: 0;
+            z-index: 200;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1.2rem;
+            background: #080608;
+            transition: opacity 1.2s ease;
+        }
+
+        #intro-screen.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .intro-label {
+            font-style: italic;
+            font-size: 0.78rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.2);
+            animation: introPulse 2.5s ease-in-out infinite;
+        }
+
+        .intro-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(2.4rem, 8vw, 3.8rem);
+            color: rgba(255, 255, 255, 0.08);
+            letter-spacing: 0.02em;
+        }
+
+        .tap-btn {
+            margin-top: 2rem;
+            padding: 12px 36px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: transparent;
+            color: rgba(255, 255, 255, 0.4);
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            letter-spacing: 0.08em;
+            animation: introPulse 2.5s ease-in-out infinite;
+        }
+
+        .tap-btn:hover {
+            border-color: rgba(220, 100, 150, 0.5);
+            color: rgba(255, 255, 255, 0.8);
+            background: rgba(220, 100, 150, 0.05);
+        }
+
+        @keyframes introPulse {
+
+            0%,
+            100% {
+                opacity: 0.6;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        /* ── Main stage ── */
+        #stage {
+            position: fixed;
+            inset: 0;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1.5rem;
+        }
+
+        /* ── Line counter ── */
+        .counter {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 7px;
+            z-index: 20;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+
+        .counter.show {
+            opacity: 1;
+        }
+
+        .counter-dot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.15);
+            transition: background 0.4s ease, transform 0.4s ease;
+        }
+
+        .counter-dot.active {
+            background: rgba(220, 100, 150, 0.8);
+            transform: scale(1.4);
+        }
+
+        .counter-dot.done {
+            background: rgba(220, 100, 150, 0.3);
+        }
+
+        /* ── The line itself ── */
+        .line-wrap {
+            text-align: center;
+            max-width: 680px;
+            width: 100%;
+            position: relative;
+        }
+
+        .line-num {
+            font-size: 2.0rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: rgba(220, 100, 150, 0.4);
+            margin-bottom: 1.2rem;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .line-num.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .line-text {
+            font-style: italic;
+            font-weight: 300;
+            font-size: clamp(1.3rem, 3.5vw, 1.85rem);
+            line-height: 1.7;
+            color: rgba(240, 232, 240, 0);
+            text-shadow: 0 0 40px rgba(220, 100, 150, 0);
+            transition: color 1.4s ease, text-shadow 1.4s ease;
+            letter-spacing: 0.01em;
+            will-change: color;
+        }
+
+        .line-text.show {
+            color: rgba(240, 232, 240, 0.9);
+            text-shadow: 0 0 60px rgba(220, 100, 150, 0.08);
+        }
+
+        .line-text.hide {
+            color: rgba(240, 232, 240, 0);
+            text-shadow: 0 0 0 rgba(220, 100, 150, 0);
+        }
+
+        /* Special styling for closing lines */
+        .line-text.closing {
+            font-size: clamp(1.1rem, 3vw, 1.5rem);
+            color: rgba(240, 232, 240, 0);
+        }
+
+        .line-text.closing.show {
+            color: rgba(240, 232, 240, 0.65);
+        }
+
+        .line-text.library {
+            font-size: clamp(1.2rem, 3.2vw, 1.65rem);
+            color: rgba(240, 232, 240, 0);
+        }
+
+        .line-text.library.show {
+            color: rgba(240, 232, 240, 0.85);
+        }
+
+        .line-text.signature {
+            font-family: 'Great Vibes', cursive;
+            font-style: normal;
+            font-size: clamp(2.2rem, 7vw, 3.5rem);
+            color: rgba(220, 100, 150, 0);
+            text-shadow: 0 0 0 rgba(220, 100, 150, 0);
+            transition: color 2s ease, text-shadow 2s ease;
+        }
+
+        .line-text.signature.show {
+            color: rgba(220, 100, 150, 0.9);
+            text-shadow: 0 0 40px rgba(220, 100, 150, 0.2);
+        }
+
+        /* ── Next hint ── */
+        .next-hint {
+            position: fixed;
+            bottom: 4.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-style: italic;
+            font-size: 0.78rem;
+            color: rgba(255, 255, 255, 0.18);
+            letter-spacing: 0.12em;
+            z-index: 20;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+            white-space: nowrap;
+        }
+
+        .next-hint.show {
+            opacity: 1;
+        }
+
+        /* ── Tap anywhere area ── */
+        #tap-area {
+            position: fixed;
+            inset: 0;
+            z-index: 15;
+            cursor: pointer;
+        }
+
+        /* ── Thin top line accent ── */
+        .top-line {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(220, 100, 150, 0.3), transparent);
+            z-index: 20;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        .top-line.show {
+            opacity: 1;
+        }
+
+        /* ── Particle hearts ── */
+        .particle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 5;
+            font-size: 0.9rem;
+            color: rgba(220, 100, 150, 0.3);
+            animation: particleDrift linear infinite;
+            will-change: transform;
+            transform: translateZ(0);
+        }
+
+        @keyframes particleDrift {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            90% {
+                opacity: 0.4;
+            }
+
+            100% {
+                transform: translateY(-10vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="ambient"></div>
+    <div class="top-line" id="topLine"></div>
+
+    <!-- Particle hearts -->
+    <div id="particles"></div>
+
+    <!-- Music bar -->
+    <div class="music-bar" id="musicBar">
+        <div class="music-eq" id="musicEq">
+            <span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <button class="music-btn" id="musicBtn" onclick="toggleMusic()">The Walls — Chase Atlantic</button>
+    </div>
+
+    <!-- Intro / tap to begin -->
+    <div id="intro-screen">
+        <p class="intro-label">✦ something i've been wanting to say ✦</p>
+        <h1 class="intro-title">for Srushti</h1>
+        <button class="tap-btn" onclick="begin()">tap to begin 🤍</button>
+    </div>
+
+    <!-- Main stage -->
+    <div id="stage">
+        <div class="line-wrap">
+            <div class="line-num" id="lineNum"></div>
+            <div class="line-text" id="lineText"></div>
+        </div>
+    </div>
+
+    <!-- Tap anywhere -->
+    <div id="tap-area" onclick="next()"></div>
+
+    <!-- Dot counter -->
+    <div class="counter" id="counter"></div>
+    <div class="next-hint" id="nextHint">tap anywhere to continue</div>
+
+
+    <audio id="bgMusic" loop>
+        <source src="assets/the-walls.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        const lines = [
+            { num: "i notice", text: "how your eyes go all big and soft when you look at me — like I'm somehow your favourite thing in the room.", type: "normal" },
+            { num: "i notice", text: "how you never once forget to bring me Choki Choki when we meet. Every single time, without fail — like loving me is just something you do without thinking.", type: "normal" },
+            { num: "i notice", text: "how you wear the things I love on you. You probably think I don't remember what I said. But I do. And so do you.", type: "normal" },
+            { num: "i notice", text: "how you rest your head on my shoulder like it was made for you. It was.", type: "normal" },
+            { num: "i notice", text: "how you hold my hand — quietly, naturally, like it's the most normal thing in the world. It is the best feeling in the world.", type: "normal" },
+            { num: "i notice", text: "how everything gets peaceful the moment we're together. Like the world lowers its volume just for us.", type: "normal" },
+            { num: "i notice", text: "how kind you are — to animals, to strangers, to people who have nothing to give you back. That kind of kindness is rare. So are you.", type: "normal" },
+            { num: "i notice", text: "how you think of me first. Before yourself, sometimes. I see that more than you know.", type: "normal" },
+            { num: "i notice", text: "every single effort you put into me. You made my birthday feel like the most important day in the world. I don't think I ever told you how much that meant.", type: "normal" },
+            { num: "i notice", text: "how you put your leg on my thighs like it's the most natural thing — and honestly? it is. you just fit.", type: "normal" },
+            { num: "", text: "There are a thousand more things I notice about you every single day. I'd need a whole library and still run out of pages.", type: "library" },
+            { num: "", text: "but for now, just know — I see you. All of you. Every quiet, beautiful, wonderful thing you are.", type: "closing" },
+            { num: "", text: "yours, Ranjeet", type: "signature" },
+        ];
+
+        let current = -1;
+        let isAnimating = false;
+        let musicPlaying = false;
+        const audio = document.getElementById('bgMusic');
+
+        // Build dot counter (only for the 10 main lines)
+        const counter = document.getElementById('counter');
+        for (let i = 0; i < 10; i++) {
+            const dot = document.createElement('div');
+            dot.classList.add('counter-dot');
+            dot.id = `dot-${i}`;
+            counter.appendChild(dot);
+        }
+
+        // Build particles
+        const particleEl = document.getElementById('particles');
+        const pChars = ['♡', '✦', '·'];
+        for (let i = 0; i < 5; i++) {
+            const p = document.createElement('div');
+            p.classList.add('particle');
+            p.textContent = pChars[i % pChars.length];
+            p.style.left = (10 + Math.random() * 80) + 'vw';
+            p.style.animationDuration = (20 + Math.random() * 20) + 's';
+            p.style.animationDelay = (Math.random() * 15) + 's';
+            p.style.fontSize = (0.6 + Math.random() * 0.6) + 'rem';
+            particleEl.appendChild(p);
+        }
+
+        function begin() {
+            const introScreen = document.getElementById('intro-screen');
+            introScreen.classList.add('fade-out');
+
+            // Try to play music
+            if (audio) {
+                audio.volume = 0;
+                audio.play().then(() => {
+                    musicPlaying = true;
+                    fadeInAudio();
+                    document.getElementById('musicBar').classList.add('show');
+                    document.getElementById('musicEq').classList.remove('paused');
+                }).catch(() => { });
+            }
+
+            setTimeout(() => {
+                introScreen.style.display = 'none';
+                document.getElementById('topLine').classList.add('show');
+                document.getElementById('counter').classList.add('show');
+                document.getElementById('nextHint').classList.add('show');
+                setTimeout(() => next(), 600);
+            }, 1200);
+        }
+
+        function fadeInAudio() {
+            if (!audio) return;
+            let vol = 0;
+            const interval = setInterval(() => {
+                vol = Math.min(vol + 0.02, 0.35);
+                audio.volume = vol;
+                if (vol >= 0.35) clearInterval(interval);
+            }, 150);
+        }
+
+        function toggleMusic() {
+            if (!audio) {
+                // No audio file - open Spotify
+                window.open('https://open.spotify.com/track/5pXui9rkf5W90DgZobuDiK', '_blank');
+                return;
+            }
+            if (musicPlaying) {
+                audio.pause();
+                musicPlaying = false;
+                document.getElementById('musicEq').classList.add('paused');
+                document.getElementById('musicBtn').textContent = '▶ The Walls — Chase Atlantic';
+            } else {
+                audio.play();
+                musicPlaying = true;
+                document.getElementById('musicEq').classList.remove('paused');
+                document.getElementById('musicBtn').textContent = 'The Walls — Chase Atlantic';
+            }
+        }
+
+        function next() {
+            if (isAnimating) return;
+            isAnimating = true;
+
+            const lineText = document.getElementById('lineText');
+            const lineNum = document.getElementById('lineNum');
+            const nextHint = document.getElementById('nextHint');
+
+            // Hide current line
+            if (current >= 0) {
+                lineText.classList.remove('show');
+                lineText.classList.add('hide');
+                lineNum.classList.remove('show');
+
+                // Update dot
+                if (current < 10) {
+                    document.getElementById(`dot-${current}`)?.classList.remove('active');
+                    document.getElementById(`dot-${current}`)?.classList.add('done');
+                }
+            }
+
+            current++;
+
+            if (current >= lines.length) {
+                // End — nothing more
+                isAnimating = false;
+                return;
+            }
+
+            const line = lines[current];
+
+            setTimeout(() => {
+                // Set new content
+                lineNum.textContent = line.num;
+                lineText.textContent = line.text;
+
+                // Reset classes
+                lineText.className = 'line-text';
+                if (line.type === 'closing') lineText.classList.add('closing');
+                if (line.type === 'library') lineText.classList.add('library');
+                if (line.type === 'signature') lineText.classList.add('signature');
+
+                // Show
+                setTimeout(() => {
+                    lineText.classList.add('show');
+                    if (line.num) lineNum.classList.add('show');
+
+                    // Update dot
+                    if (current < 10) {
+                        document.getElementById(`dot-${current}`)?.classList.add('active');
+                    }
+
+                    // Hide counter and hint on closing lines
+                    if (line.type === 'closing' || line.type === 'library' || line.type === 'signature') {
+                        document.getElementById('counter').classList.remove('show');
+                    }
+
+                    // On signature — hide tap hint
+                    if (line.type === 'signature') {
+                        nextHint.classList.remove('show');
+                    }
+
+                    isAnimating = false;
+                }, 100);
+
+            }, current === 0 ? 200 : 700);
+        }
+
+        // Keyboard support
+        document.addEventListener('keydown', (e) => {
+            if (e.code === 'Space' || e.code === 'ArrowRight' || e.code === 'Enter') next();
+        });
+    </script>
+</body>
+
+</html>

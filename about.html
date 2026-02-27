@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>A Little Secret 🔐</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;1,300;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="about-style.css">
+</head>
+<body>
+
+    <div class="hearts-bg" id="heartsBg"></div>
+    <div class="petals" id="petals"></div>
+
+    <div class="container" id="mainCard">
+        <div class="lock-icon" id="lockIcon">🔒</div>
+        <h1>A Little Secret</h1>
+        <div class="heart-divider">
+            <span class="line"></span>
+            <span class="big-heart">♡</span>
+            <span class="line"></span>
+        </div>
+        <p class="hint-label">✦ password hint ✦</p>
+        <p class="hint">the combination of our names</p>
+
+        <div class="input-wrap">
+            <input
+                type="password"
+                id="passwordInput"
+                placeholder="whisper it here..."
+                maxlength="20"
+                autocomplete="off"
+            />
+            <span class="eye-toggle" id="eyeToggle" onclick="toggleEye()">👁</span>
+        </div>
+
+        <p class="error-msg" id="errorMsg">💔 hmm that's not it, try again my love</p>
+
+        <button onclick="checkPassword()">
+            <span class="btn-inner">Unlock 💌</span>
+        </button>
+
+        <p class="sub">only you would know this 🌹</p>
+    </div>
+
+    <script>
+        // Background hearts
+        const heartsBg = document.getElementById('heartsBg');
+        const heartChars = ['♡', '♥', '❤', '🤍', '💕', '💗', '💓'];
+        for (let i = 0; i < 28; i++) {
+            const h = document.createElement('span');
+            h.classList.add('float-heart');
+            h.textContent = heartChars[Math.floor(Math.random() * heartChars.length)];
+            h.style.left = Math.random() * 100 + 'vw';
+            h.style.animationDuration = (6 + Math.random() * 10) + 's';
+            h.style.animationDelay = (Math.random() * 8) + 's';
+            h.style.fontSize = (0.8 + Math.random() * 2) + 'rem';
+            h.style.opacity = 0.15 + Math.random() * 0.25;
+            heartsBg.appendChild(h);
+        }
+
+        // Falling petals
+        const petalsEl = document.getElementById('petals');
+        for (let i = 0; i < 15; i++) {
+            const p = document.createElement('div');
+            p.classList.add('petal');
+            p.style.left = Math.random() * 100 + 'vw';
+            p.style.animationDuration = (8 + Math.random() * 8) + 's';
+            p.style.animationDelay = (Math.random() * 10) + 's';
+            p.style.width = (8 + Math.random() * 10) + 'px';
+            p.style.height = (8 + Math.random() * 10) + 'px';
+            petalsEl.appendChild(p);
+        }
+
+        // Allow enter key
+        document.getElementById('passwordInput').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') checkPassword();
+        });
+
+        function toggleEye() {
+            const input = document.getElementById('passwordInput');
+            input.type = input.type === 'password' ? 'text' : 'password';
+        }
+
+        function checkPassword() {
+            const val = document.getElementById('passwordInput').value.trim().toLowerCase();
+            const errorMsg = document.getElementById('errorMsg');
+            const lockIcon = document.getElementById('lockIcon');
+            const card = document.getElementById('mainCard');
+
+            if (val === 'rashti') {
+                // Success!
+                lockIcon.textContent = '🔓';
+                lockIcon.style.animation = 'bounceIn 0.5s ease';
+                card.classList.add('success-glow');
+                errorMsg.style.display = 'none';
+
+                // Spawn heart burst
+                spawnHeartBurst();
+
+                setTimeout(() => {
+                    window.location.href = "her.html";
+                }, 1400);
+            } else {
+                // Wrong password shake
+                errorMsg.style.display = 'block';
+                card.classList.remove('shake');
+                void card.offsetWidth;
+                card.classList.add('shake');
+            }
+        }
+
+        function spawnHeartBurst() {
+            const hearts = ['💗','💕','💓','♥','🌹','💖','✨'];
+            for (let i = 0; i < 18; i++) {
+                const el = document.createElement('div');
+                el.className = 'burst-heart';
+                el.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                const angle = Math.random() * 360;
+                const dist = 80 + Math.random() * 160;
+                el.style.cssText = `
+                    position: fixed;
+                    left: 50%; top: 50%;
+                    font-size: ${1 + Math.random() * 1.5}rem;
+                    pointer-events: none;
+                    z-index: 9999;
+                    animation: burstOut 1.2s ease forwards;
+                    --dx: ${Math.cos(angle * Math.PI/180) * dist}px;
+                    --dy: ${Math.sin(angle * Math.PI/180) * dist}px;
+                `;
+                document.body.appendChild(el);
+                setTimeout(() => el.remove(), 1300);
+            }
+        }
+    </script>
+</body>
+</html>
